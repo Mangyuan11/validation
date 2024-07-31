@@ -36,7 +36,7 @@
         </div>
         <div>
             <label for="deadline">Deadline:</label>
-            <input type="date" id="deadline" name="deadline" value="{{ old('deadline')}}"></select>
+            <input type="date" id="deadline" name="deadline" value="{{ old('deadline')}}">
             @error('deadline')
                 <div>{{ $message }}</div> 
             @enderror
