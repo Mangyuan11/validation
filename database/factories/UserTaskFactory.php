@@ -17,7 +17,10 @@ class UserTaskFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+                'task_name' => fake()->sentence(),
+                'status' => fake()->randomElement(['Pending', 'On Process', 'Completed', 'Cancelled']),
+                'description' => fake()->paragraph(),
+                'deadline' => fake()->dateTimeBetween('2000-01-01','2010-12-30')->format('Y-m-d'),
         ];
     }
 }
