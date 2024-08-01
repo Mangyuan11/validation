@@ -12,7 +12,8 @@ class UserTaskController extends Controller
      */
     public function index()
     {
-        return UserTask::all();
+        $data['tasks'] = UserTask::all();
+        return view('user_task.index',$data);
     }
 
     /**
@@ -22,7 +23,6 @@ class UserTaskController extends Controller
     {
         return view('user_tasks');
     }
-
     /**
      * Store a newly created resource in storage.
      */
