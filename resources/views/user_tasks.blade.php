@@ -1,50 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation From</title>
-</head>
-<body>
-    <form action="{{ url('user_tasks')}}" method="POST">
+@extends('layouts.app')
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-mb-8">
+            <div class="class">
+                <div class="card-header">{{ __('User Task Form')}}</div>
+
+                <div class=card-body>
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success')}}
+                        </div>
+                    @endif
+                    <form action="{{ url('user_tasks')}}" method="POST">
         @csrf
-        <div>
+        <div class="row mb-3 mx-3">
             <label for="task_name">Task Name</label>
-            <input type="text" id="name" name="task_name" value="{{ old('task_name')}}" />
+            <input type="text" id="name" name="task_name" class="form-control @error('task_name') is-invalid @enderror" value="{{ old('task_name')}}" />
             @error('task_name')
-                <div>{{ $message }}</div> 
+                <div class="invalid-feedback p-0" role="alert">{{ $message }}</div> 
             @enderror
         </div>
-        <div>
+        <div class="row mb-3 mx-3">
             <label for="status">Status</label>
-            <select id="status" name="status">
+            <select id="status" name="status" class="form-control @error('task_name') is-invalid @enderror">
                     <option value="">--</option>
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
                     <option value="Cancelled">Cancelled</option>
             </select>
             @error('status')
-                <div>{{ $message }}</div> 
+            <div class="invalid-feedback p-0" role="alert">{{ $message }}</div> 
             @enderror
         </div>
-        <div>
+        <div class="row mb-3 mx-3">
             <label for="description">Description:</label>
-            <textarea id="description" name="description"  rows="5" style="width: 100%"></textarea>
+            <textarea id="description" name="description" class="form-control @error('task_name') is-invalid @enderror"  rows="5" style="width: 100%"></textarea>
             @error('description')
-                <div>{{ $message }}</div> 
+            <div class="invalid-feedback p-0" role="alert">{{ $message }}</div> 
             @enderror
         </div>
-        <div>
+        <div class="row mb-3 mx-3">
             <label for="deadline">Deadline:</label>
-            <input type="date" id="deadline" name="deadline" value="{{ old('deadline')}}">
+            <input type="date" id="deadline" name="deadline" class="form-control @error('task_name') is-invalid @enderror" value="{{ old('deadline')}}">
             @error('deadline')
-                <div>{{ $message }}</div> 
+            <div class="invalid-feedback p-0" role="alert">{{ $message }}</div> 
             @enderror
             </div>
             <button type="submit">Submit</button>
     </form>
-    @if (session('success'))
-        <div>{{ session('success')}}</div>
-    @endif
-</body>
-</html>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
